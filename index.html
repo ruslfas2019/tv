@@ -66,7 +66,7 @@
 </head>
 <body>
   <div id="video-container" data-shaka-player-container data-shaka-player-cast-receiver-id="1BA79154">
-    <video autoplay data-shaka-player id="video" poster="logo.png"></video>
+    <video autoplay data-shaka-player id="video" poster="logo.jpg"></video>
   </div>
   <script>
 
@@ -74,10 +74,20 @@ const kid = 'ac8e0dd8ea8fdc9dc52e6856c0eaf9ba';
 const key = '054d6605a69ac6684b82cf7d04d3ec16';
 const manifestUri = 'https://bpcdn.dialog.lk/bpk-tv/Ch201/output/index.mpd';
 
+// Function to check if the user is on a mobile device
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
+// Function to redirect to a different URL for mobile users
+function redirectToMobileURL() {
+  if (isMobile()) {
+    window.location.href = 'https://drm-bot.herokuapp.com/asiacup-mobile.html'; // Replace with your mobile URL
+  }
+}
 
 async function init() {
-  
+  redirectToMobileURL(); // Redirect mobile users
   const video = document.getElementById('video');
   const ui = video['ui'];
   const controls = ui.getControls();
