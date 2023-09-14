@@ -33,19 +33,18 @@
         }
     </style>
 
-    <script src="cdn.jsdelivr.net/gh/clappr/clappr_latest/dist/clappr.min.js"></script>
-    <script src="cdn.jsdelivr.net/gh/clappr/dash-shaka-playback_latest/dist/dash-shaka-playback.js"></script>
-    <script src="cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin_latest/dist/level-selector.min.js"></script>
-    <script src="cdn.jsdelivr.net/npm/clappr-pip_latest/dist/clappr-pip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/clappr/clappr@latest/dist/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
 </head>
 <body>
     <div id="player"></div>
     <script type="text/javascript">
-        const kid = 'e4ed34369670e86a3261d12cb100a6a7';
-        const key = 'f7bb43913e19270d2b7cc9415ce5ac29';
+        const kid = 'ac8e0dd8ea8fdc9dc52e6856c0eaf9ba';
+        const key = '054d6605a69ac6684b82cf7d04d3ec16';
         const options = {
-            source: "https://bpcdn.dialog.lk/bpk-tv/Ch120/output/index.mpd",
-            plugins: [DashShakaPlayback, LevelSelector, ClapprPip.PipButton, ClapprPip.PipPlugin],
+            source: "https://bpcdn.dialog.lk/bpk-tv/Ch201/output/index.mpd",
+            plugins: [DashShakaPlayback, LevelSelector],
             shakaConfiguration: {
                 drm: {
                     clearKeys: {
