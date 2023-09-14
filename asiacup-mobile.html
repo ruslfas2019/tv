@@ -36,6 +36,7 @@
     <script src="https://cdn.jsdelivr.net/gh/clappr/clappr@latest/dist/clappr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js"></script>
 </head>
 <body>
     <div id="player"></div>
@@ -44,7 +45,7 @@
         const key = 'f7bb43913e19270d2b7cc9415ce5ac29';
         const options = {
             source: "https://bpcdn.dialog.lk/bpk-tv/Ch120/output/index.mpd",
-            plugins: [DashShakaPlayback, LevelSelector],
+            plugins: [DashShakaPlayback, LevelSelector, ClapprPip.PipButton, ClapprPip.PipPlugin],
             shakaConfiguration: {
                 drm: {
                     clearKeys: {
