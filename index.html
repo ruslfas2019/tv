@@ -68,92 +68,34 @@
   <div id="video-container" data-shaka-player-container data-shaka-player-cast-receiver-id="1BA79154">
     <video autoplay data-shaka-player id="video" poster="images/Asia-Cup-2023.jpg"></video>
   </div>
-  <script>
-
-const kid = 'e4ed34369670e86a3261d12cb100a6a7';
-const key = 'f7bb43913e19270d2b7cc9415ce5ac29';
-const manifestUri = 'https://bpcdn.dialog.lk/bpk-tv/Ch120/output/index.mpd';
-
-// Function to check if the user is on a mobile device
-function isMobile() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-// Function to redirect to a different URL for mobile users
-function redirectToMobileURL() {
-  if (isMobile()) {
-    window.location.href = 'https://tv.ruslfas2019.eu.org/asiacup-mobile.html'; // Replace with your mobile URL
-  }
-}
-
-async function init() {
-  redirectToMobileURL(); // Redirect mobile users
-  const video = document.getElementById('video');
-  const ui = video['ui'];
-  const controls = ui.getControls();
-  const player = controls.getPlayer();
-
-player.configure({
-  drm: {
-    clearKeys: {
-      [kid]: key
-    }
-  },
-  streaming: {
-    lowLatencyMode: true,
-    inaccurateManifestTolerance: 0,
-    rebufferingGoal: 0.01,
-    segmentPrefetchLimit: 2,
-  }
-});
-
-const config = {
-    'customContextMenu' : true,
-    'addSeekBar' : true,
-    'contextMenuElements' : ['statistics'],
-    'statisticsList' : ['width', 'height', 'playTime', 'bufferingTime'],
-    'controlPanelElements': ['play_pause','mute','volume','time_and_duration','spacer','quality','picture_in_picture','fullscreen'],
-
-    'volumeBarColors': {'base': 'rgba(255, 255, 255, 0.3)','level': 'rgb(0, 96, 173)'},
-    'doubleClickForFullscreen': true,
-    'seekBarColors': {'base': 'rgba(255, 255, 255, 0.3)','played': '#e93035',},
-    'singleClickForPlayAndPause': true,
-    'enableTooltips' : true
-    }
-ui.configure(config);
-
-  window.player = player;
-  window.ui = ui;
-
-  player.addEventListener('error', onPlayerErrorEvent);
-  controls.addEventListener('error', onUIErrorEvent);
-
-  try {
-    await player.load(manifestUri);
-    console.log('The video has now been loaded!');
-  } catch (error) {
-    onPlayerError(error);
-  }
-}
-
-function onPlayerErrorEvent(errorEvent) {
-  onPlayerError(event.detail);
-}
-
-function onPlayerError(error) {
-  console.error('Error code', error.code, 'object', error);
-}
-
-function onUIErrorEvent(errorEvent) {
-  onPlayerError(event.detail);
-}
-
-function initFailed(errorEvent) {
-  console.error('Unable to load the UI library!');
-}
-
-document.addEventListener('shaka-ui-loaded', init);
-document.addEventListener('shaka-ui-load-failed', initFailed);
-</script>
+  <script type="text/javascript">
+        const kid = 'd39790dc8ad2220261d183e1607cb3e8';
+        const key = 'f6ac47b7cf425e121afd360296dddfa8';
+        const options = {
+            source: "https://bpcdn.dialog.lk/bpk-tv/Ch204/output/index.mpd",
+            plugins: [DashShakaPlayback, LevelSelector, ClapprPip.PipButton, ClapprPip.PipPlugin],
+            shakaConfiguration: {
+                drm: {
+                    clearKeys: {
+                        [kid]: key
+                    }
+                },
+                streaming: {
+                    lowLatencyMode: true,
+                    inaccurateManifestTolerance: 0,
+                    rebufferingGoal: 0.01,
+                    segmentPrefetchLimit: 2,
+                }
+            },
+            levelSelectorConfig: {
+                title: 'Quality',
+                labelCallback: function (playbackLevel, customLabel) {
+                    return customLabel + playbackLevel.level.height + 'p'; // High 720p
+                }
+            },
+            parentId: "#player",
+        }
+        let player = new Clappr.Player(options);
+    </script>
 </body>
 </html>
